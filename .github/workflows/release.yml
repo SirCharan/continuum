@@ -1,0 +1,29 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Privacy scan
+        run: bash scripts/privacy-scan.sh
+      - name: Build installable payload
+        run: |
+          V="${GITHUB_REF_NAME}"
+          DIST="continuum-${V}"
+          mkdir -p "$DIST"
+          cp -R hooks skill templates sample-vault scripts install.sh uninstall.sh config.example.sh LICENSE README.md CHANGELOG.md "$DIST"/
+          tar czf "${DIST}.tar.gz" "$DIST"
+          zip -rq "${DIST}.zip" "$DIST"
+          ls -la *.tar.gz *.zip
+      - name: Create GitHub Release with packages
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            continuum-*.tar.gz
+            continuum-*.zip
+          generate_release_notes: true

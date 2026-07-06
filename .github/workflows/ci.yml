@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Privacy scan (no author-private strings)
+        run: bash scripts/privacy-scan.sh
+      - name: Sandbox install smoke test
+        run: |
+          SBX=$(mktemp -d)
+          HOME="$SBX" CLAUDE_MEMORY_DIR="$SBX/mem" bash ./install.sh
+          test -f "$SBX/.claude/hooks/_hooklib.py"
+          test -f "$SBX/mem/MEMORY.md"
+          HOME="$SBX" CLAUDE_MEMORY_DIR="$SBX/mem" python3 "$SBX/.claude/skills/obsidian/scripts/doctor.py"
+          echo "install + doctor OK on a clean machine"
