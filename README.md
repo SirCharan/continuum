@@ -2,6 +2,8 @@
 
 **Persistent, local-first memory for Claude Code — in your own Obsidian vault.**
 
+**🌐 [continuum-pi-nine.vercel.app](https://continuum-pi-nine.vercel.app)**
+
 ![license](https://img.shields.io/badge/license-MIT-blue) ![version](https://img.shields.io/badge/version-0.1.0-informational) ![local](https://img.shields.io/badge/100%25-local-brightgreen) ![no telemetry](https://img.shields.io/badge/telemetry-none-success)
 
 Your AI coding agent forgets everything between sessions. The usual fix is a hosted "memory" service that stores your context **on someone else's servers, for a monthly fee**. Continuum fixes it a different way: plain Markdown notes in **your own [Obsidian](https://obsidian.md) vault**, wired into Claude Code with a handful of hooks. It loads relevant memory into every chat and every prompt, and writes back after every reply — automatically. **Free, open-source, and your data never leaves your machine.**
