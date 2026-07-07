@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com); versioning: [SemVer](https://semver.org).
 
+## [0.1.1] — unreleased
+### Added
+- Per-turn memory stats line: every prompt now shows `📊 <N> notes · <n> on <project> · latest: <last addition>` (via the recall hook, before the gate).
+
 ## [0.1.0] — unreleased
 ### Added
 - Initial release: file-based memory for Claude Code over an Obsidian vault.
