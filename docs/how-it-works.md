@@ -12,6 +12,8 @@ Continuum is a set of Claude Code **hooks** operating over a folder of Markdown 
 | Stop | `capture-exchange.sh/.py` | Appends a one-line capture of the exchange to `Daily/YYYY-MM-DD.md`; queues research/learnings for curation. |
 | PostToolUse(Edit\|Write) | `memory-lint.sh/.py` | Warns (never blocks) on missing frontmatter, broken `[[wikilinks]]`, orphans. |
 
+The recall hook also prints a `📊 Obsidian memory: N notes · n on <project> · latest: …` line each prompt; the assistant echoes it at the top of its reply (hook output isn't user-visible, so the assistant surfaces it). See `templates/CLAUDE.snippet.md`.
+
 The model emits a `<!--CAPTURE: … || type: … || links: …-->` footer each reply (see `templates/CLAUDE.snippet.md`); the Stop hook files it. If the footer is absent, a raw fallback keeps the capture from being lost.
 
 ## The three cadences + consolidation

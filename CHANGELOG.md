@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com); versioning: [SemVer](https://semver.org).
 
+## [0.1.2] — unreleased
+### Changed
+- The per-turn memory-stats line is now surfaced by the assistant at the TOP of each reply (the hook computes it; hook output isn't user-visible, so the CLAUDE.md snippet instructs the model to echo it).
+
 ## [0.1.1] — unreleased
 ### Added
 - Per-turn memory stats line: every prompt now shows `📊 <N> notes · <n> on <project> · latest: <last addition>` (via the recall hook, before the gate).
