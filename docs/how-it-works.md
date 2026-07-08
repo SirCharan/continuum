@@ -49,3 +49,6 @@ SBX=$(mktemp -d); HOME=$SBX CLAUDE_MEMORY_DIR=$SBX/mem ./install.sh
 HOME=$SBX CLAUDE_MEMORY_DIR=$SBX/mem python3 $SBX/.claude/skills/obsidian/scripts/doctor.py
 ```
 Expect `doctor` to pass with zero configuration.
+
+## Unstick
+- **When stuck**: `/obsidian pull <query>` returns the full text of the best-matching notes/captures/`_system` docs; a `stuck-detector` PostToolUse(Bash) hook nudges you to it after a command fails ≥2× in a row.

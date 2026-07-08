@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project are documented here. Format: [Keep a Changelog](https://keepachangelog.com); versioning: [SemVer](https://semver.org).
 
+## [0.1.3] — unreleased
+### Added
+- `/obsidian pull <query>` — full-content 'unstick' search across notes + Daily + _system.
+- `stuck-detector` PostToolUse(Bash) hook — nudges to query memory when the same command fails repeatedly.
+
 ## [0.1.2] — unreleased
 ### Changed
 - The per-turn memory-stats line is now surfaced by the assistant at the TOP of each reply (the hook computes it; hook output isn't user-visible, so the CLAUDE.md snippet instructs the model to echo it).

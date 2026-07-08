@@ -22,6 +22,7 @@ Dispatch on the argument after `/obsidian`:
 - **link** — run `health.py`, then for orphan/under-linked notes surface + insert the missing `[[wikilinks]]` (to `_MOC`, hubs, related notes).
 - **review** — weekly rollup: read recent `Daily/` + recently-`last_confirmed` notes; write a dated `## Review` bloyou into today's Daily (what changed, open threads, promotion candidates).
 - **health** — run `scripts/health.py` and relay: counts, missing v2 fields, broken wikilinks, orphans, stale (>120d), retired.
+- **pull `<query>`** — the *unstick* search: grep the ENTIRE vault (notes + Daily/ + _system/) and return the FULL text of the top matches. Use when blocked to get the actual answer/fix, not a title.
 - **find `<query>`** — run `scripts/find.py <query>` (grep-based ranked search); relay top hits. (Semantic/embedding search is a deferred upgrade.)
 - **prune** — run `health.py`; from stale/orphan/duplicate candidates, **propose** a table of archive/merge/retire actions for you to confirm. Apply only what you approves, via `status`/`supersedes` (move to an `_archive/` folder at most — never `rm`).
 - **migrate** — run `scripts/migrate-frontmatter.py` to backfill v2 fields on any notes missing them (idempotent).

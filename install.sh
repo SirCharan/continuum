@@ -37,19 +37,19 @@ try: d = json.load(open(p))
 except Exception: d = {}
 H = d.setdefault("hooks", {})
 REG = {
-  "SessionStart": [("session-memory.sh", 8), ("session-resume.sh", 8)],
-  "UserPromptSubmit": [("memory-recall.sh", 5)],
-  "Stop": [("capture-exchange.sh", 6)],
-  "PostToolUse": [("memory-lint.sh", 5)],
+  "SessionStart": [("session-memory.sh", 8, None), ("session-resume.sh", 8, None)],
+  "UserPromptSubmit": [("memory-recall.sh", 5, None)],
+  "Stop": [("capture-exchange.sh", 6, None)],
+  "PostToolUse": [("memory-lint.sh", 5, "Edit|Write"), ("stuck-detector.sh", 5, "Bash")],
 }
 def has(ev, cmd): return any(h.get("command")==cmd for e in H.get(ev,[]) for h in e.get("hooks",[]))
 for ev, items in REG.items():
     arr = H.setdefault(ev, [])
-    for name, to in items:
+    for name, to, matcher in items:
         cmd = f"bash ~/.claude/hooks/{name}"
         if has(ev, cmd): continue
         entry = {"hooks": [{"type":"command","command":cmd,"timeout":to}]}
-        if ev == "PostToolUse": entry["matcher"] = "Edit|Write"
+        if matcher: entry["matcher"] = matcher
         arr.append(entry)
 os.makedirs(os.path.dirname(p), exist_ok=True)
 json.dump(d, open(p,"w"), indent=2); open(p,"a").write("\n")
